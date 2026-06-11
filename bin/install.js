@@ -358,7 +358,7 @@ function quoteWinArg(a) {
 function spawnXplat(cmd, args, opts) {
   if (IS_WIN) {
     const quoted = args.map(quoteWinArg).join(' ');
-    return child_process.spawnSync(`${cmd} ${quoted}`, [], Object.assign({ shell: true }, opts || {}));
+    return child_process.spawnSync(`${quoteWinArg(cmd)} ${quoted}`, [], Object.assign({ shell: true }, opts || {}));
   }
   return child_process.spawnSync(cmd, args, opts || {});
 }
